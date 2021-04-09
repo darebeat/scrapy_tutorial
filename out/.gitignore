@@ -1,4 +1,6 @@
 *.html
 *.json
 *.jl
-*.log
+*.png
+*.jpg
+*.jpeg

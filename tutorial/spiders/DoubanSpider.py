@@ -18,6 +18,7 @@ class DoubanSpider(scrapy.Spider):
     # 转换为bs4对象
     bs_response = BeautifulSoup(response.text,'html.parser')
     move_list = bs_response.find_all('div',class_="pl2")
+    
     for it in move_list:
       # 实例化一个管道对象
       item = DoubanItem()
@@ -29,3 +30,4 @@ class DoubanSpider(scrapy.Spider):
       item['comment'] = re.search('(\d+)',it.find("span",class_="pl").text).group(1)
       logger.warning(item)
       yield item
+

@@ -36,3 +36,14 @@ response.css('title::text').re(r'(\w+) to (\w+)')
 # XPath选择元素
 response.xpath('//title')
 ```
+
+## tesseract
+
+```sh
+apt install tesseract-ocr
+brew install tesseract
+
+pip3 install pytesseract
+pip3 install pillow
+pip install PIL
+```
