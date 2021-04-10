@@ -1,5 +1,5 @@
 from .AuthorItem import AuthorItem
-from .DoubanItem import DoubanItem
+from .DoubanItem import DoubanItem,MusicItem,MusicReviewItem,VideoItem,VideoReviewItem
 from .SFItem import SFItem
 from .QdItem import QdItem
 from .TaobaoItem import TaobaoItem
@@ -7,3 +7,5 @@ from .FangItem import FangItem
 from .CoursesItem import CoursesItem
 from .HrItem import HrItem
 from .WxItem import WxItem
+from .KuaidailiItem import KuaidailiItem
+from .ImdbItem import ImdbItem

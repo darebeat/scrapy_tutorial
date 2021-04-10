@@ -6,6 +6,11 @@ logger = logging.getLogger(__name__)
 
 class CoursesSpider(scrapy.Spider):
   name = 'courses'
+  custom_settings = {
+    'ITEM_PIPELINES':{
+      'tutorial.pipelines.CoursePipeline': 300
+    }
+  }
   allowed_domains = ['edu.csdn.net']
   start_urls = ['https://edu.csdn.net/course?cat1=5329']
   p=1

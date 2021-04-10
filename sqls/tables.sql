@@ -6,7 +6,7 @@ create table t_author(
   `name` VARCHAR(255),
   birthdate VARCHAR(255),
   bio varchar(2000),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (id)
 );
 
 drop table if exists t_douban;
@@ -18,8 +18,71 @@ create table t_douban (
   info varchar(2000),
   rating decimal(2,1),
   comment int,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (id)
 );
+
+drop table if exists t_douban_music;
+create table t_douban_music (
+  id bigint NOT NULL AUTO_INCREMENT,
+  music_name text,
+  music_alias text,
+  music_singer text,
+  music_time text,
+  music_rating text,
+  music_votes text,
+  music_tags text,
+  music_url text,
+  PRIMARY KEY (id)
+);
+
+drop table if exists t_douban_music_review;
+create table t_douban_music_review (
+  id bigint NOT NULL AUTO_INCREMENT,
+  review_title text,
+  review_content text,
+  review_author text,
+  review_music text,
+  review_time text,
+  review_url text,
+  PRIMARY KEY (id)
+);
+
+drop table if exists t_douban_video;
+create table t_douban_video (
+  id bigint NOT NULL AUTO_INCREMENT,
+  video_name text,
+  video_alias text,
+  video_actor text,
+  video_year text,
+  video_time text,
+  video_rating text,
+  video_votes text,
+  video_tags text,
+  video_url text,
+  video_director text,
+  video_type text,
+  video_bigtype text,
+  video_area text,
+  video_language text,
+  video_length text,
+  video_writer text,
+  video_desc text,
+  video_episodes text,
+  PRIMARY KEY (id)
+);
+
+drop table if exists t_douban_video_review;
+create table t_douban_video_review (
+  id bigint NOT NULL AUTO_INCREMENT,
+  review_title text,
+  review_content text,
+  review_author text,
+  review_video text,
+  review_time text,
+  review_url text,
+  PRIMARY KEY (id)
+);
+  
 
 drop table if exists t_courses;
 CREATE TABLE t_courses (                          

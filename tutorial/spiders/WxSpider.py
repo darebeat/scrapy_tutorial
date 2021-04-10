@@ -4,6 +4,11 @@ from ..items import WxItem
 
 class WxSpider(scrapy.Spider):
   name = 'wx'
+  custom_settings = {
+    'ITEM_PIPELINES':{
+      'tutorial.pipelines.WxPipeline': 300
+    }
+  }
   allowed_domains = ['weixin.sogou.com']
   start_urls = ['http://weixin.sogou.com/weixin?query=python&type=2&page=1&ie=utf8']
 

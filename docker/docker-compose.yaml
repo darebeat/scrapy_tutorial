@@ -1,0 +1,63 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:4.2.6 # https://github.com/docker-library/mongo
+    container_name: mongodb
+    networks:
+      deploy:
+        ipv4_address: 172.10.0.107
+        aliases:
+          - mongodb
+    ports:
+      - 27017:27017
+    command: 
+      - bash
+      - -c
+      - |
+        cat > /docker-entrypoint-initdb.d/init-mongo.js << EOF
+        db.getSiblingDB('scrapy').createUser({
+          user: "dev",
+          pwd: "dev12345",
+          roles: [ { role: "readWrite", db: "scrapy" } ]
+        });
+        db.getSiblingDB('scrapy').auth("dev","dev12345");
+        EOF
+        docker-entrypoint.sh mongod
+    volumes:
+      # - ./init.d/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./data/mongo/db:/data/db
+      - ./data/mongo/log:/var/log/mongodb
+    environment:
+      TZ: Asia/Shanghai
+      # MONGO_INITDB_DATABASE: scrapy # 默认的数据库
+      MONGO_INITDB_ROOT_USERNAME: root # 你的root管理员名称
+      MONGO_INITDB_ROOT_PASSWORD: 123456 # 你的root管理员名称密码
+
+  redis:
+    image: redis:6.0.10-alpine
+    ports:
+      - 6379:6379
+    container_name: redis
+    networks:
+      deploy:
+        ipv4_address: 172.10.0.102
+        aliases:
+          - redis
+    volumes:
+      # - ./redis.conf:/etc/redis.conf
+      - ./data/redis:/data
+    command: 
+      - sh
+      - -c
+      - |
+        cat > /etc/redis.conf << EOF
+        # redis的databases数量
+        databases 32 
+        # redis密码
+        requirepass 123 
+        EOF
+        redis-server /etc/redis.conf
+
+networks:
+  deploy:
+    external: true

@@ -6,6 +6,11 @@ logger = logging.getLogger(__name__)
 
 class AuthorsSpider(scrapy.Spider):
   name = 'author'
+  custom_settings = {
+    'ITEM_PIPELINES':{
+      'tutorial.pipelines.AuthorPipeline': 300
+    }
+  }
 
   start_urls = ['http://quotes.toscrape.com/']
 

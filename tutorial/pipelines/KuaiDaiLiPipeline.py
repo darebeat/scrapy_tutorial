@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-import pymysql,json
+import pymysql
 
 class KuaidailiRedisPipeline(object):
   def process_item(self, item, spider):
@@ -9,7 +9,7 @@ class KuaidailiRedisPipeline(object):
     return item
 
 # 存入到mysql中的管道类，这个不在settings里面开启，就不会影响整个工程的运行
-class KuaiDaiLiPipeline(object):
+class KuaidailiPipeline(object):
   """docstring for MysqlPipeline"""
   def __init__(self):
     settings = get_project_settings()
@@ -23,12 +23,14 @@ class KuaiDaiLiPipeline(object):
     self.connect()
 
   def connect(self):
-    self.conn = pymysql.connect(host=self.host,
-               port=self.port,
-               user=self.user,
-               password=self.pwd,
-               db=self.name,
-               charset=self.charset)
+    self.conn = pymysql.connect(
+      host=self.host,
+      port=self.port,
+      user=self.user,
+      password=self.pwd,
+      db=self.name,
+      charset=self.charset
+    )
     self.cursor = self.conn.cursor()
 
   def close_spider(self, spider):

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  redis:
+    image: redis:6.0.10-alpine
+    ports:
+      - 6379:6379
+    container_name: redis
+    networks:
+      deploy:
+        ipv4_address: 172.10.0.102
+        aliases:
+          - redis
+    volumes:
+      # - ./redis.conf:/etc/redis.conf
+      - ./data/redis:/data
+    command: 
+      - sh
+      - -c
+      - |
+        cat > /etc/redis.conf << EOF
+        # redis的databases数量
+        databases 32 
+        # redis密码
+        requirepass 123 
+        EOF
+        redis-server /etc/redis.conf
+
+networks:
+  deploy:
+    external: true

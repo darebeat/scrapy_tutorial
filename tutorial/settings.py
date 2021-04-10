@@ -31,7 +31,7 @@ ROBOTSTXT_OBEY = False
 # CONCURRENT_REQUESTS = 16
 
 # Configure a delay for requests for the same website (default: 0)
-DOWNLOAD_DELAY = 0.5
+DOWNLOAD_DELAY = 1
 RANDOMIZE_DOWNLOAD_DELAY = True
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
@@ -105,19 +105,23 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+# ------------------------ mysql config
 MYSQL_HOST = '127.0.0.1'
 MYSQL_DBNAME = 'test'
 MYSQL_USER = 'test'
 MYSQL_PASSWD = 'd73XzyUo%iz(ix'
 MYSQL_PORT = 3310
 
-KEYWORDS = ['iPad']
-MAX_PAGE = 2
-SELENIUM_TIMEOUT = 20
-PHANTOMJS_SERVICE_ARGS = ['--load-images=false', '--disk-cache=true']
-
+# ------------------------ 
+# mongodb config
 MONGO_URL = 'localhost'
 MONGO_DB = 'test'
 COLLECTION = 'ProductItem'
 
-IMAGES_STORE = 'images'
+# ------------------------ 
+# other custom config
+KEYWORDS = ['iPad']
+MAX_PAGE = 2
+SELENIUM_TIMEOUT = 20
+PHANTOMJS_SERVICE_ARGS = ['--load-images=false', '--disk-cache=true']
+# IMAGES_STORE = 'images'

@@ -7,6 +7,11 @@ logger = logging.getLogger(__name__)
 
 class JdSpider(Spider):
   name = 'jd'
+  custom_settings = {
+    'ITEM_PIPELINES':{
+      'tutorial.pipelines.JDPipeline': 300
+    }
+  }
   allowed_domains = ['www.jd.com']
   base_url = 'https://search.jd.com/Search?keyword='
  

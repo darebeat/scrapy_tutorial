@@ -7,6 +7,11 @@ import requests
 
 class QdSpider(CrawlSpider):
   name = 'qd'
+  custom_settings = {
+    'ITEM_PIPELINES':{
+      'tutorial.pipelines.QdPipeline': 300
+    }
+  }
   # allowed_domains = ['qidian.com']
   start_urls = ['https://www.qidian.com/all?orderId=&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0&page=1']
   rules = (

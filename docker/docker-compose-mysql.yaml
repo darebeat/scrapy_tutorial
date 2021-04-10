@@ -1,0 +1,56 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0.23
+    container_name: mysql
+    restart: always
+    security_opt:
+      - seccomp:unconfined
+    networks:
+      deploy:
+        ipv4_address: 172.10.0.101
+        aliases:
+          - mysql
+    ports:
+      - "3310:3306"
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=d73XzyUo%iz(ix
+      - MYSQL_DATABASE=test
+    volumes:
+      - "./data/mysql/db:/var/lib/mysql"
+    command: 
+      - bash
+      - -c
+      - |
+        cat > /etc/mysql/conf.d/mysqld.conf << EOF
+        [client]
+        default-character-set=utf8mb4
+
+        [mysql]
+        default-character-set=utf8mb4
+        max_allowed_packet=500M
+
+        [mysqld]
+        character-set-server=utf8mb4
+        collation-server=utf8mb4_general_ci
+        default_authentication_plugin=mysql_native_password
+        ft_min_word_len=2
+        lower_case_table_names=1
+        default_time_zone=+8:00
+        max_connections = 512
+        tmp_table_size = 10240M
+        max_heap_table_size = 10240M
+
+        # 开启binlog
+        log-bin=mysql-bin 
+        binlog-format=ROW # 选择ROW模式
+        server_id=1 # 配置MySQL replaction需要定义，不要和Canal的slaveId重复
+        EOF
+        docker-entrypoint.sh
+
+networks:
+  deploy:
+    external: true

@@ -1,0 +1,7 @@
+selenium
+scrapy
+pymysql
+pymongo
+BeautifulSoup4
+scrapy-redis 
+redis

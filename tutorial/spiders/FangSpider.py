@@ -7,6 +7,11 @@ logger = logging.getLogger(__name__)
 class FangSpider(scrapy.Spider):
   name = 'fang'
   allowed_domains = ['fang.5i5j.com']
+  custom_settings = {
+    'ITEM_PIPELINES':{
+      'tutorial.pipelines.FangPipeline': 300
+    }
+  }
   #start_urls = ['http://fang.5i5j.com/']
   start_urls = ['https://fang.5i5j.com/bj/loupan/']
 

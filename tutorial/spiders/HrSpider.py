@@ -8,6 +8,11 @@ logger = logging.getLogger(__name__)
 
 class HrSpider(scrapy.Spider):
   name = 'hr'
+  custom_settings = {
+    'ITEM_PIPELINES':{
+      'tutorial.pipelines.HrPipeline': 300
+    }
+  }
   allowed_domains = ['tencent.com']
   start_urls = [
       'https://careers.tencent.com/tencentcareer/api/post/Query?timestamp='

@@ -1,0 +1,39 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:4.2.6 # https://github.com/docker-library/mongo
+    container_name: mongodb
+    networks:
+      deploy:
+        ipv4_address: 172.10.0.107
+        aliases:
+          - mongodb
+    ports:
+      - 27017:27017
+    command: 
+      - bash
+      - -c
+      - |
+        cat > /docker-entrypoint-initdb.d/init-mongo.js << EOF
+        db.getSiblingDB('scrapy').createUser({
+          user: "dev",
+          pwd: "dev12345",
+          roles: [ { role: "readWrite", db: "scrapy" } ]
+        });
+        db.getSiblingDB('scrapy').auth("dev","dev12345");
+        EOF
+        chmod a+r /docker-entrypoint-initdb.d/*
+        docker-entrypoint.sh mongod
+    volumes:
+      # - ./init.d/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./data/mongo/db:/data/db
+      - ./data/mongo/log:/var/log/mongodb
+    environment:
+      TZ: Asia/Shanghai
+      # MONGO_INITDB_DATABASE: scrapy # 默认的数据库
+      MONGO_INITDB_ROOT_USERNAME: root # 你的root管理员名称
+      MONGO_INITDB_ROOT_PASSWORD: 123456 # 你的root管理员名称密码
+
+networks:
+  deploy:
+    external: true
