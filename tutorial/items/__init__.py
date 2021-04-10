@@ -1,5 +1,6 @@
+from .TaskItem import TaskItem
 from .AuthorItem import AuthorItem
-from .DoubanItem import DoubanItem,MusicItem,MusicReviewItem,VideoItem,VideoReviewItem
+from .DoubanItem import DoubanItem,MusicItem,MusicReviewItem,VideoItem,VideoReviewItem,BookItem
 from .SFItem import SFItem
 from .QdItem import QdItem
 from .TaobaoItem import TaobaoItem

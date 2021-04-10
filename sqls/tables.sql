@@ -21,6 +21,25 @@ create table t_douban (
   PRIMARY KEY (id)
 );
 
+drop table if exists t_douban_books;
+CREATE TABLE t_douban_books (
+  id bigint(20) unsigned NOT NULL COMMENT 'ID号',
+  title varchar(255) DEFAULT NULL COMMENT '书名',
+  author varchar(64) DEFAULT NULL COMMENT '作者',
+  press varchar(255) DEFAULT NULL COMMENT '出版社',
+  original varchar(255) DEFAULT NULL COMMENT '原作名',
+  translator varchar(128) DEFAULT NULL COMMENT '译者',
+  imprint varchar(128) DEFAULT NULL COMMENT '出版年',
+  pages int(10) unsigned DEFAULT NULL COMMENT '页数',
+  price double(6,2) unsigned DEFAULT NULL COMMENT '定价',
+  binding varchar(32) DEFAULT NULL COMMENT '装帧',
+  series varchar(128) DEFAULT NULL COMMENT '丛书',
+  isbn varchar(128) DEFAULT NULL COMMENT 'ISBN',
+  score varchar(128) DEFAULT NULL COMMENT '评分',
+  number int(10) unsigned DEFAULT NULL COMMENT '评论人数',
+  PRIMARY KEY (id)
+);
+
 drop table if exists t_douban_music;
 create table t_douban_music (
   id bigint NOT NULL AUTO_INCREMENT,
@@ -85,26 +104,26 @@ create table t_douban_video_review (
   
 
 drop table if exists t_courses;
-CREATE TABLE t_courses (                          
-   id bigint NOT NULL AUTO_INCREMENT,  
-   title varchar(255) DEFAULT NULL,              
-   `url` varchar(255) DEFAULT NULL,                
-   pic varchar(255) DEFAULT NULL,                
-   teacher varchar(32) DEFAULT NULL,             
-   `time` varchar(16) DEFAULT NULL,                
-   price varchar(16) DEFAULT NULL,               
-   PRIMARY KEY (id)                              
+CREATE TABLE t_courses (
+id bigint NOT NULL AUTO_INCREMENT,
+title varchar(255) DEFAULT NULL,
+`url` varchar(255) DEFAULT NULL,
+pic varchar(255) DEFAULT NULL,
+teacher varchar(32) DEFAULT NULL,
+`time` varchar(16) DEFAULT NULL,
+price varchar(16) DEFAULT NULL,
+PRIMARY KEY (id)
  );
 
 
 drop table if exists t_hr;
-CREATE TABLE t_hr (                          
-   id bigint unsigned NOT NULL AUTO_INCREMENT,  
-   title varchar(255) DEFAULT NULL,              
-   location varchar(32) DEFAULT NULL,                
-   type varchar(32) DEFAULT NULL,                
-   is_valid varchar(32) DEFAULT NULL,             
-   duty text DEFAULT NULL,                
-   updatetime varchar(20) DEFAULT NULL,               
-   PRIMARY KEY (id)                              
+CREATE TABLE t_hr (
+id bigint unsigned NOT NULL AUTO_INCREMENT,
+title varchar(255) DEFAULT NULL,
+location varchar(32) DEFAULT NULL,
+type varchar(32) DEFAULT NULL,
+is_valid varchar(32) DEFAULT NULL,
+duty text DEFAULT NULL,
+updatetime varchar(20) DEFAULT NULL,
+PRIMARY KEY (id)
 );

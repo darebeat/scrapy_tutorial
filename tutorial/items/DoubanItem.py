@@ -57,3 +57,21 @@ class VideoReviewItem(Item):
   review_video = Field()
   review_time = Field()
   review_url = Field()
+
+    
+class BookItem(Item):
+    # define the fields for your item here like:
+    id = Field()       #ID号
+    title = Field()    #书名
+    author = Field()   #作者
+    press = Field()    #出版社
+    original = Field() #原作名
+    translator = Field()#译者
+    imprint = Field()  #出版年
+    pages = Field()    #页数
+    price = Field()    #定价
+    binding = Field()  #装帧
+    series = Field()   #丛书
+    isbn = Field()     #ISBN
+    score = Field()    #评分
+    number = Field()   #评论人数

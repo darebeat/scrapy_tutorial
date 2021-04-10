@@ -8,3 +8,4 @@ from .CoursePipeline import EducsdnPipeline,CoursePipeline
 from .HrPipeline import HrPipeline
 from .WxPipeline import WxPipeline
 from .KuaidailiPipeline import KuaidailiRedisPipeline,KuaidailiPipeline
+from .DbookPipeline import DbookMasterPipeline,DbookSlavePipeline
