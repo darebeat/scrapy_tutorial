@@ -41,7 +41,7 @@ USER_AGENT_LIST = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
 ]
 
-def main():
+def dbook_init():
   #使用requests爬取所有豆瓣图书标签信息
   url = "https://book.douban.com/tag/?view=type&icn=index-sorttags-all"
   USER_AGENT = random.choice(USER_AGENT_LIST)
@@ -66,6 +66,22 @@ def main():
     link.lpush("book:tag_urls",tag)
 
   print("共计写入tag：%d个"%(len(items)))
+
+def kdl_init():
+  base_url='https://www.kuaidaili.com/free/'
+  link = redis.StrictRedis(host='127.0.0.1', port=6379, db=0, password='123') # 指定Redis数据库信息
+  
+  link.lpush("kdl:start_urls",base_url + 'inha/')
+  link.lpush("kdl:start_urls",base_url + 'intr/')
+  #遍历封装数据并返回
+  for i in range(1,30):
+    #将信息以kdl:start_urls写入到Redis中
+    link.lpush("kdl:start_urls",base_url + 'inha/'+str(i))
+    link.lpush("kdl:start_urls",base_url + 'intr/'+str(i))
+
+def main():
+  # dbook_init()
+  kdl_init()
 
 #主程序入口
 if __name__ == '__main__':

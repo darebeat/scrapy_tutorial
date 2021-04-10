@@ -1,27 +1,19 @@
 from scrapy_redis.spiders import RedisSpider
 from ..items import KuaidailiItem
 
-
 class KuaidailiSpider(RedisSpider):
   """Spider that reads urls from redis queue (KuaidailiSpider:start_urls)."""
   name = 'kdl'
   custom_settings = {
     'ITEM_PIPELINES': {
       'tutorial.pipelines.KuaidailiRedisPipeline': 300,
+      'tutorial.pipelines.KuaidailiPipeline': 301,
       'scrapy_redis.pipelines.RedisPipeline': 400,
-    },
-    'DUPEFILTER_CLASS': 'scrapy_redis.dupefilters.RFPDupeFilter',
-    'SCHEDULER': "scrapy_redis.scheduler.Scheduler",
-    'SCHEDULER_PERSIST': True,
-    'SCHEDULER_QUEUE_CLASS': 'scrapy_redis.queue.SpiderPriorityQueue',
-    'REDIS_URL': None,
-    'REDIS_HOST': '127.0.0.1',
-    'REDIS_PORT': 6379,
-    'REDIS_PASS': '123'
+    }
   }
   
   # 注意这里原本应该是start_urls，但是使用redis后变成redis_key
-  redis_key = 'KuaidailiSpider:start_urls'
+  redis_key = 'kdl:start_urls'
   
 	# 这里本来应该是 allowed_domains = ['www.kuaidaili.com'] ，然后变成自动捕捉的，
 	#值得注意的是这里使用allowed_domains = ['www.kuaidaili.com']仍然有效

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-import pymysql
+import pymysql,logging
+logger = logging.getLogger(__name__)
 
 class KuaidailiRedisPipeline(object):
   def process_item(self, item, spider):
@@ -10,37 +11,60 @@ class KuaidailiRedisPipeline(object):
 
 # 存入到mysql中的管道类，这个不在settings里面开启，就不会影响整个工程的运行
 class KuaidailiPipeline(object):
-  """docstring for MysqlPipeline"""
-  def __init__(self):
-    settings = get_project_settings()
-    self.host = settings['DB_HOST']
-    self.port = settings['DB_PORT']
-    self.user = settings['DB_USER']
-    self.pwd = settings['DB_PWD']
-    self.name = settings['DB_NAME']
-    self.charset = settings['DB_CHARSET']
-    # 链接数据库
-    self.connect()
+  def __init__(self,host,user,password,database,port):
+    self.host = host
+    self.user = user
+    self.password = password
+    self.database = database
+    self.port = port
 
-  def connect(self):
-    self.conn = pymysql.connect(
+  @classmethod
+  def from_crawler(cls,crawler):
+    return cls(
+      host = crawler.settings.get("MYSQL_HOST"),
+      database = crawler.settings.get("MYSQL_DBNAME"),
+      user = crawler.settings.get("MYSQL_USER"),
+      password = crawler.settings.get("MYSQL_PASSWD"),
+      port = crawler.settings.get("MYSQL_PORT")
+    )
+
+  def open_spider(self, spider):
+    '''负责连接数据库'''
+    self.db = pymysql.connect(
       host=self.host,
       port=self.port,
+      database=self.database,
       user=self.user,
-      password=self.pwd,
-      db=self.name,
-      charset=self.charset
+      password=self.password,
+      charset='utf8mb4',
+      use_unicode=True
     )
-    self.cursor = self.conn.cursor()
-
-  def close_spider(self, spider):
-    self.conn.close()
-    self.cursor.close()
+    self.cursor = self.db.cursor()
 
   def process_item(self, item, spider):
-    # sql = 'insert into ip_list(ip, port) values("%s", "%s")' % (item['ip'], item['port'])
-    # # 执行sql语句
-    # self.cursor.execute(sql)
-    # # 提交之后才会生效
-    # self.conn.commit()
+    try:
+      self.cursor.execute("""select ip from t_kdl where ip = %s""", item["ip"])
+      ret = self.cursor.fetchone()
+      if ret:
+        self.cursor.execute(
+          """ update t_kdl set port = %s, crawled = %s, spider = %s where ip = %s """,(
+            item['port'],
+            item['crawled'],
+            item['spider']
+          ))
+      else:
+        self.cursor.execute(
+          """ insert into t_kdl( ip, port, crawled, spider ) value (%s,%s,%s,%s) """,(
+            item['ip'],
+            item['port'],
+            item['crawled'],
+            item['spider']
+          ))
+      self.db.commit()
+    except Exception as e:
+      logger.error(e)
     return item
+
+  def close_spider(self, spider):
+    self.cursor.close()
+    self.db.close()

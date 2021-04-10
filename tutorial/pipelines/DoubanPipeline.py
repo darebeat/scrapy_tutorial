@@ -25,7 +25,7 @@ class DoubanPipeline(object):
       try:
         # 查重处理
         self.cursor.execute(
-          """select * from t_douban where item_id = %s""",
+          """select id from t_douban where item_id = %s""",
           item['item_id'])
         # 是否有重复数据
         repetition = self.cursor.fetchone()
@@ -62,7 +62,7 @@ class DoubanPipeline(object):
       return item
     elif item.__class__ == MusicItem:
       try:
-        self.cursor.execute("""select * from t_douban_music where music_url = %s""", item["music_url"])
+        self.cursor.execute("""select id from t_douban_music where music_url = %s""", item["music_url"])
         ret = self.cursor.fetchone()
         if ret:
           self.cursor.execute(
@@ -117,7 +117,7 @@ class DoubanPipeline(object):
       return item
     elif item.__class__ == MusicReviewItem:
       try:
-        self.cursor.execute("""select * from t_douban_music_review where review_url = %s""", item["review_url"])
+        self.cursor.execute("""select id from t_douban_music_review where review_url = %s""", item["review_url"])
         ret = self.cursor.fetchone()
         if ret:
           self.cursor.execute(
@@ -164,7 +164,7 @@ class DoubanPipeline(object):
       return item
     elif item.__class__ == VideoItem:
       try:
-        self.cursor.execute("""select * from t_douban_video where video_url = %s""", item["video_url"])
+        self.cursor.execute("""select id from t_douban_video where video_url = %s""", item["video_url"])
         ret = self.cursor.fetchone()
         if ret:
           self.cursor.execute(
@@ -259,7 +259,7 @@ class DoubanPipeline(object):
       return item
     elif item.__class__ == VideoReviewItem:
       try:
-        self.cursor.execute("""select * from t_douban_video_review where review_url = %s""", item["review_url"])
+        self.cursor.execute("""select id from t_douban_video_review where review_url = %s""", item["review_url"])
         ret = self.cursor.fetchone()
         if ret:
           self.cursor.execute(

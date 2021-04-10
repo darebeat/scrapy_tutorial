@@ -21,8 +21,8 @@ create table t_douban (
   PRIMARY KEY (id)
 );
 
-drop table if exists t_douban_books;
-CREATE TABLE t_douban_books (
+drop table if exists t_douban_book;
+CREATE TABLE t_douban_book (
   id bigint(20) unsigned NOT NULL COMMENT 'ID号',
   title varchar(255) DEFAULT NULL COMMENT '书名',
   author varchar(64) DEFAULT NULL COMMENT '作者',
@@ -126,4 +126,13 @@ is_valid varchar(32) DEFAULT NULL,
 duty text DEFAULT NULL,
 updatetime varchar(20) DEFAULT NULL,
 PRIMARY KEY (id)
+);
+
+drop table if exists t_kdl;
+create table t_kdl (
+  ip varchar(30),
+  port int,
+  crawled text,
+  spider varchar(100),
+  primary	KEY  (ip)
 );

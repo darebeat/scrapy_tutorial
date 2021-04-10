@@ -45,5 +45,5 @@ class HrPipeline(object):
     return item
 
   def close_spider(self, spider):
-    '''关闭连接数据库'''
+    self.cursor.close()
     self.db.close()
