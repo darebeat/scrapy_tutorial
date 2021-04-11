@@ -5,3 +5,4 @@ pymongo
 BeautifulSoup4
 scrapy-redis 
 redis
+fake_useragent

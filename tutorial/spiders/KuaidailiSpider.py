@@ -1,16 +1,11 @@
 from scrapy_redis.spiders import RedisSpider
-from ..items import KuaidailiItem
+from ..items.KuaidailiItem import KuaidailiItem
+from ..configs.spider.settings import kdl
 
 class KuaidailiSpider(RedisSpider):
   """Spider that reads urls from redis queue (KuaidailiSpider:start_urls)."""
   name = 'kdl'
-  custom_settings = {
-    'ITEM_PIPELINES': {
-      'tutorial.pipelines.KuaidailiRedisPipeline': 300,
-      'tutorial.pipelines.KuaidailiPipeline': 301,
-      'scrapy_redis.pipelines.RedisPipeline': 400,
-    }
-  }
+  custom_settings = kdl
   
   # 注意这里原本应该是start_urls，但是使用redis后变成redis_key
   redis_key = 'kdl:start_urls'

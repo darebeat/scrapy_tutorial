@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from tutorial.middlewares.Resource import USER_AGENT_LIST
+from ..middlewares.Resource import USER_AGENT_LIST
 import random
 
 class RandomUserAgent(object):

@@ -2,7 +2,7 @@
 
 import pymysql,logging
 from tutorial import settings
-from ..items import DoubanItem,MusicItem,MusicReviewItem,VideoItem,VideoReviewItem
+from ..items.DoubanItem import DoubanItem,MusicItem,MusicReviewItem,VideoItem,VideoReviewItem
 logger = logging.getLogger(__name__)
 
 class DoubanPipeline(object):

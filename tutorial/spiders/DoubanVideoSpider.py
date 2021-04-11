@@ -2,7 +2,8 @@
 
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from ..items import VideoItem, VideoReviewItem
+from ..items.DoubanItem import VideoItem, VideoReviewItem
+from ..configs.spider.settings import video
 import logging,re
 logger = logging.getLogger(__name__)
 
@@ -15,11 +16,7 @@ LENGTH = re.compile(r"单集片长:</span> (.+?)<br>")
 
 class VideoSpider(CrawlSpider):
   name = 'video'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.DoubanPipeline': 300
-    }
-  }
+  custom_settings = video
   allowed_domains = ['movie.douban.com']
   start_urls = [
     'https://movie.douban.com/tag/',

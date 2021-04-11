@@ -2,17 +2,14 @@
 
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from ..items import MusicItem, MusicReviewItem
+from ..items.DoubanItem import MusicItem, MusicReviewItem
+from ..configs.spider.settings import music
 import logging,re
 logger = logging.getLogger(__name__)
 
 class MusicSpider(CrawlSpider):
   name = 'music'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.DoubanPipeline': 300
-    }
-  }
+  custom_settings = music
   allowed_domains = ['music.douban.com']
   start_urls = [
     'https://music.douban.com/tag/',

@@ -2,16 +2,13 @@
  
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from ..items import QdItem
+from ..items.QdItem import QdItem
+from ..configs.spider.settings import qd
 import requests
 
 class QdSpider(CrawlSpider):
   name = 'qd'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.QdPipeline': 300
-    }
-  }
+  custom_settings = qd
   # allowed_domains = ['qidian.com']
   start_urls = ['https://www.qidian.com/all?orderId=&style=1&pageSize=20&siteid=1&pubflag=0&hiddenField=0&page=1']
   rules = (

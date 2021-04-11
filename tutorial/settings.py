@@ -1,11 +1,6 @@
-# Scrapy settings for tutorial project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     https://docs.scrapy.org/en/latest/topics/settings.html
-#     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+# -*- coding: utf-8 -*-
+
+from .configs.mysql import *
 # from datetime import datetime
 # to_day = datetime.now()
 
@@ -22,7 +17,7 @@ LOG_LEVEL = "DEBUG" # DEBUG | INFO | WARNING | ERROR | CRITICAL
 # LOG_STDOUT = False
 
 # 定义请求头
-# USER_AGENTS = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1"
+USER_AGENTS = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -72,17 +67,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-  # 'tutorial.pipelines.AuthorPipeline': 300,
-  # 'tutorial.pipelines.DoubanPipeline': 300,
-  # 'tutorial.pipelines.JDPipeline': 300,
-  # 'tutorial.pipelines.QdPipeline': 300,
-  # 'tutorial.pipelines.TaobaoPipeline': 300,
-  # 'tutorial.pipelines.FangPipeline': 300,
-  # 'tutorial.pipelines.CoursePipeline': 300,
-  # 'tutorial.pipelines.HrPipeline': 300,
-  # 'tutorial.pipelines.WxPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#   'tutorial.pipelines.AuthorPipeline': 300,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -105,51 +92,10 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# ------------------------ mysql config
-MYSQL_HOST = '127.0.0.1'
-MYSQL_DBNAME = 'test'
-MYSQL_USER = 'test'
-MYSQL_PASSWD = 'd73XzyUo%iz(ix'
-MYSQL_PORT = 3310
-
-# ------------------------ 
-# mongodb config
-MONGO_URL = 'localhost'
-MONGO_DB = 'test'
-COLLECTION = 'ProductItem'
-
 # ------------------------ 
 # other custom config
 KEYWORDS = ['iPad']
 MAX_PAGE = 2
 SELENIUM_TIMEOUT = 20
 PHANTOMJS_SERVICE_ARGS = ['--load-images=false', '--disk-cache=true']
-# IMAGES_STORE = 'images'
-
-# ------------------------ 
-# scrapy-redis 分布式爬虫配置
-# 指定使用scrapy-redis的去重
-DUPEFILTER_CLASS = 'scrapy_redis.dupefilter.RFPDupeFilter'
-
-# 指定使用scrapy-redis的调度器
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-
-# 在redis中保持scrapy-redis用到的各个队列，从而允许暂停和暂停后恢复，也就是不清理redis queues
-SCHEDULER_PERSIST = True
-
-# 指定排序爬取地址时使用的队列，
-# 默认的 按优先级排序(Scrapy默认)，由sorted set实现的一种非FIFO、LIFO方式。
-SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
-
-# 可选的 按先进先出排序（FIFO）
-# SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderQueue'
-# 可选的 按后进先出排序（LIFO）
-# SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderStack'
-
-# REDIS_URL = None # 一般情况可以省去
-REDIS_HOST = '127.0.0.1' # 也可以根据情况改成 localhost
-REDIS_PORT = 6379
-REDIS_PARAMS = {
-  'db': 0,
-  'password': '123'
-}
+IMAGES_STORE = 'images'

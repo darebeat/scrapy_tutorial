@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from ..items import CoursesItem
-import logging
+import scrapy,logging
+from ..items.CourseItem import CourseItem
+from ..configs.spider.settings import course
 logger = logging.getLogger(__name__)
 
-class CoursesSpider(scrapy.Spider):
-  name = 'courses'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.CoursePipeline': 300
-    }
-  }
+class CourseSpider(scrapy.Spider):
+  name = 'course'
+  custom_settings = course
   allowed_domains = ['edu.csdn.net']
   start_urls = ['https://edu.csdn.net/course?cat1=5329']
   p=1
@@ -19,7 +15,7 @@ class CoursesSpider(scrapy.Spider):
     dlist = response.selector.css("div.card_item_edu_course")
     #遍历课程，并解析信息后封装到item容器中
     for dd in dlist:
-      item = CoursesItem()
+      item = CourseItem()
       item['title'] = dd.css("div.item_title a::attr(title)").extract_first()
       item['url'] = dd.css("div.item_title a::attr(href)").extract_first()
       item['pic'] = dd.css("img::attr(src)").extract_first()

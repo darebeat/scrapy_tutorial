@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 from scrapy import Request, Spider
 from urllib.parse import quote
-from ..items import TaobaoItem
+from ..items.TaobaoItem import TaobaoItem
+from ..configs.spider.settings import taobao
 import logging
 logger = logging.getLogger(__name__)
 
 class TaobaoSpider(Spider):
   name = 'taobao'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.TaobaoPipeline': 300
-    }
-  }
+  custom_settings = taobao
   allowed_domains = ['www.taobao.com']
   base_url = 'https://s.taobao.com/search?q='
 

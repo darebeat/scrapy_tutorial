@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
 # 
 import scrapy,re
-from ..items import BookItem
+from ..items.DoubanItem import BookItem
+from ..configs.spider.settings import sbook
 from scrapy_redis.spiders import RedisSpider
-
 
 class DBookSlaveSpider(RedisSpider):
   name = 'sbook'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.DbookSlavePipeline': 300,
-      'scrapy_redis.pipelines.RedisPipeline': 400,
-    }
-  }
+  custom_settings = sbook
   #allowed_domains = ['book.douban.com']
   #start_urls = ['http://book.douban.com/']
   redis_key = "bookspider:start_urls"

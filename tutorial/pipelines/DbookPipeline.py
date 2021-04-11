@@ -1,5 +1,6 @@
 import redis,re,pymysql,logging
-from ..items import BookItem
+from ..items.DoubanItem import BookItem
+from ..configs import redis as rconf
 logger = logging.getLogger(__name__)
 
 class DbookMasterPipeline(object):
@@ -11,10 +12,10 @@ class DbookMasterPipeline(object):
   def from_crawler(cls,crawler):
     '''注入实例化对象（传入参数）'''
     return cls(
-      host = crawler.settings.get("REDIS_HOST"),
-      port = crawler.settings.get("REDIS_PORT"),
-      db = 0,
-      password = crawler.settings.get('REDIS_PARAMS').get('password')
+      host = rconf.REDIS_HOST,
+      port = rconf.REDIS_PORT,
+      db = rconf.REDIS_PARAMS['db'],
+      password = rconf.REDIS_PARAMS['password']
     )
 
   def process_item(self, item, spider):  

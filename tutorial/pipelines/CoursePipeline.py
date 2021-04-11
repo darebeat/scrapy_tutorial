@@ -40,7 +40,7 @@ class CoursePipeline(object):
     self.cursor = self.db.cursor()
 
   def process_item(self, item, spider):
-    sql = "insert into t_courses(title,url,pic,teacher,time,price) values('%s','%s','%s','%s','%s','%s')"%(item['title'],item['url'],item['pic'],item['teacher'],str(item['time']),str(item['price']))
+    sql = "insert into t_course(title,url,pic,teacher,time,price) values('%s','%s','%s','%s','%s','%s')"%(item['title'],item['url'],item['pic'],item['teacher'],str(item['time']),str(item['price']))
     #print(item)
     self.cursor.execute(sql)
     self.db.commit()

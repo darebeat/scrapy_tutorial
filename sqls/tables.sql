@@ -5,7 +5,7 @@ create table t_author(
   id bigint NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255),
   birthdate VARCHAR(255),
-  bio varchar(2000),
+  bio text,
   PRIMARY KEY (id)
 );
 
@@ -103,8 +103,8 @@ create table t_douban_video_review (
 );
   
 
-drop table if exists t_courses;
-CREATE TABLE t_courses (
+drop table if exists t_course;
+CREATE TABLE t_course (
 id bigint NOT NULL AUTO_INCREMENT,
 title varchar(255) DEFAULT NULL,
 `url` varchar(255) DEFAULT NULL,

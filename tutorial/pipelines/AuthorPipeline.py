@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
-import pymysql
-import logging
-from tutorial import settings
+import pymysql,logging
+from ..configs import mysql as author
 
 class AuthorPipeline:
   def __init__(self):
     # 连接数据库
     self.connect = pymysql.connect(
-      host=settings.MYSQL_HOST,
-      port=settings.MYSQL_PORT,
-      database=settings.MYSQL_DBNAME,
-      user=settings.MYSQL_USER,
-      password=settings.MYSQL_PASSWD,
+      host=author.MYSQL_HOST,
+      port=author.MYSQL_PORT,
+      database=author.MYSQL_DBNAME,
+      user=author.MYSQL_USER,
+      password=author.MYSQL_PASSWD,
       charset='utf8mb4',
       use_unicode=True)
 

@@ -2,16 +2,14 @@
 from scrapy import Request,Spider
 from urllib.parse import quote
 from bs4 import BeautifulSoup
+from ..items.JdProduct import JdProduct
+from ..configs.spider.settings import jd
 import logging
 logger = logging.getLogger(__name__)
 
 class JdSpider(Spider):
   name = 'jd'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.JDPipeline': 300
-    }
-  }
+  custom_settings = jd
   allowed_domains = ['www.jd.com']
   base_url = 'https://search.jd.com/Search?keyword='
  
@@ -26,21 +24,21 @@ class JdSpider(Spider):
     soup = BeautifulSoup(response.text, 'lxml')
     lis = soup.find_all(name='li', class_="gl-item")
     for li in lis:
-      proc_dict = {}
+      item = JdProduct()
       dp = li.find(name='span', class_="J_im_icon")
       if dp:
-        proc_dict['dp'] = dp.get_text().strip()
+        item['dp'] = dp.get_text().strip()
       else:
         continue
       id = li.attrs['data-sku']
       title = li.find(name='div', class_="p-name p-name-type-2")
-      proc_dict['title'] = title.get_text().strip()
+      item['title'] = title.get_text().strip()
       price = li.find(name='strong', class_="J_" + id)
-      proc_dict['price'] = price.get_text()
+      item['price'] = price.get_text()
       comment = li.find(name='a', id="J_comment_" + id)
-      proc_dict['comment'] = comment.get_text() + '条评论'
+      item['comment'] = comment.get_text() + '条评论'
       url = 'https://item.jd.com/' + id + '.html'
-      proc_dict['url'] = url
-      proc_dict['type'] = 'JINGDONG'
-      logger.info(proc_dict)
-      yield proc_dict
+      item['url'] = url
+      item['type'] = 'JINGDONG'
+      logger.info(item)
+      yield item

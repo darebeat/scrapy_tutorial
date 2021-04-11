@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from ..items import HrItem
-import time
-import json
-import logging
+
+import scrapy,time,json,logging
+from ..items.HrItem import HrItem
+from ..configs.spider.settings import hr
 logger = logging.getLogger(__name__)
 
 class HrSpider(scrapy.Spider):
   name = 'hr'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.HrPipeline': 300
-    }
-  }
+  custom_settings = hr
   allowed_domains = ['tencent.com']
   start_urls = [
       'https://careers.tencent.com/tencentcareer/api/post/Query?timestamp='

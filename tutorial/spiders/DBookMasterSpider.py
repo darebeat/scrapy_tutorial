@@ -1,28 +1,23 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from ..items import TaskItem 
+
+import scrapy,redis,re,time,random
 from scrapy import Request
 from urllib.parse import quote
-import redis,re,time,random
+from ..items.TaskItem import TaskItem
+from ..configs.spider.settings import mbook
 
 class DBookMasterSpider(scrapy.Spider):
   name = 'mbook'
+  custom_settings = mbook
   allowed_domains = ['book.douban.com']
   base_url = 'https://book.douban.com'
 
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.DbookMasterPipeline': 300,
-      'scrapy_redis.pipelines.RedisPipeline': 400,
-    }
-  }
-
   def start_requests(self):
     """ 从redis中获取，并爬取标签对应的网页信息 """
-    r = redis.Redis(host=self.settings.get("REDIS_HOST"),
-      port=self.settings.get("REDIS_PORT"),
-      db=0,
-      password=self.settings.get("REDIS_PARAMS").get('password'),
+    r = redis.Redis(host=self.custom_settings.get("REDIS_HOST"),
+      port=self.custom_settings.get("REDIS_PORT"),
+      db=self.custom_settings.get("REDIS_PARAMS").get('db'),
+      password=self.custom_settings.get("REDIS_PARAMS").get('password'),
       decode_responses=True)
     
     while r.llen('book:tag_urls'):

@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 import scrapy
-from ..items import WxItem
+from ..items.WxItem import WxItem
+from ..configs.spider.settings import wx
 
 class WxSpider(scrapy.Spider):
   name = 'wx'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.WxPipeline': 300
-    }
-  }
+  custom_settings = wx
   allowed_domains = ['weixin.sogou.com']
   start_urls = ['http://weixin.sogou.com/weixin?query=python&type=2&page=1&ie=utf8']
 

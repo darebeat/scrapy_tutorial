@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from ..items import AuthorItem
-import logging
+import scrapy,logging
+from ..items.AuthorItem import AuthorItem
+from ..configs.spider.settings import author
 logger = logging.getLogger(__name__)
 
 class AuthorsSpider(scrapy.Spider):
   name = 'author'
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.AuthorPipeline': 300
-    }
-  }
-
+  custom_settings = author
   start_urls = ['http://quotes.toscrape.com/']
 
   def parse(self, response):

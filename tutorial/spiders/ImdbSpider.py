@@ -1,7 +1,7 @@
 # coding:utf-8
 
 from scrapy.spiders import CrawlSpider, Request, Rule
-from ..items import ImdbItem
+from ..items.ImdbItem import ImdbItem
 from scrapy.linkextractors import LinkExtractor
 
 class ImdbSpider(CrawlSpider):

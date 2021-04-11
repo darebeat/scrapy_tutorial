@@ -1,33 +1,43 @@
 # -*- coding: utf-8 -*-
 
 import pymongo
+from ..configs import mongo as mgc
 
 class JDPipeline(object):
-  def __init__(self,mongo_url,mongo_db,collection):
-    self.mongo_url = mongo_url
-    self.mongo_db = mongo_db
-    self.collection = collection
+  ''' 完成MongoDB数据库对Item信息的存储'''
+  def __init__(self,host,port,db,username,password):
+    '''对象初始化'''
+    self.host = host
+    self.port = port
+    self.db = db
+    self.username = username
+    self.password = password
 
   @classmethod
-  #from_crawler是一个类方法，由 @classmethod标识，是一种依赖注入的方式，它的参数就是crawler
-  #通过crawler我们可以拿到全局配置的每个配置信息，在全局配置settings.py中的配置项都可以取到。
-  #所以这个方法的定义主要是用来获取settings.py中的配置信息
-  def from_crawler(cls,crawler):
+  def from_crawler(cls, crawler):
+    '''通过依赖注入方式实例化当前类，并返回，参数是从配置文件获取MongoDB信息'''
     return cls(
-      mongo_url=crawler.settings.get('MONGO_URL'),
-      mongo_db = crawler.settings.get('MONGO_DB'),
-      collection = crawler.settings.get('COLLECTION')
+      host=mgc.MONGO_HOST,
+      port=mgc.MONGO_PORT,
+      db=mgc.MONGO_DB,
+      username=mgc.MONGO_USERNAME,
+      password=mgc.MONGO_PASSWORD
     )
 
-  def open_spider(self,spider):
-    self.client = pymongo.MongoClient(self.mongo_url)
-    self.db = self.client[self.mongo_db]
+  def open_spider(self, spider):
+    '''Spider开启自动调用此方法，负责连接MongoDB，并选择数据库'''
+    self.client = pymongo.MongoClient(
+      host=self.host,
+      port=self.port,
+      authSource=self.db,
+      username=self.username,
+      password=self.password,
+      serverSelectionTimeoutMS=3000
+    )
+    self.db = self.client[self.db]
 
   def process_item(self,item, spider):
-    # name = item.__class__.collection
-    print(item)
-    name = self.collection
-    self.db[name].insert(dict(item))
+    self.db[item.collection].insert(dict(item))
     return item
 
   def close_spider(self,spider):

@@ -1,5 +1,5 @@
 import scrapy
-from ..items import SFItem
+from ..items.SFItem import SFItem
 import logging
 logger = logging.getLogger(__name__)
 

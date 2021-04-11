@@ -1,6 +1,6 @@
 import scrapy
 
-class CoursesItem(scrapy.Item):
+class CourseItem(scrapy.Item):
   title = scrapy.Field()
   url = scrapy.Field()
   pic = scrapy.Field()

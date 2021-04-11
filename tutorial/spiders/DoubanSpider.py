@@ -1,18 +1,13 @@
-import scrapy
-from ..items import DoubanItem
+import scrapy,re,logging
+from ..items.DoubanItem import DoubanItem
+from ..configs.spider.settings import douban
 from bs4 import BeautifulSoup
-import re
-import logging
 logger = logging.getLogger(__name__)
 
 class DoubanSpider(scrapy.Spider):
   # name 是每个爬虫项目的唯一名字,用于区分不同的Spider爬虫
   name = 'douban'  # 这是 scrapy 爬虫程序的唯一标识
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.DoubanPipeline': 300
-    }
-  }
+  custom_settings = douban
   # 这里是允许爬取的域名,如果初试或者后续的请求链接不是这个域名,则请求链接就会被过滤掉
   allowed_domains = ['douban.com']  # 允许爬虫爬取的域名(url)范围
   # 它包含了Spider在启动的时候,爬取的URL列表,初试请求是由它来定义的

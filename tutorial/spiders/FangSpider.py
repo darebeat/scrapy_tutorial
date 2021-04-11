@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from ..items import FangItem
-import logging
+import scrapy,logging
+from ..items.FangItem import FangItem
+from ..configs.spider.settings import fang
 logger = logging.getLogger(__name__)
 
 class FangSpider(scrapy.Spider):
   name = 'fang'
   allowed_domains = ['fang.5i5j.com']
-  custom_settings = {
-    'ITEM_PIPELINES':{
-      'tutorial.pipelines.FangPipeline': 300
-    }
-  }
+  custom_settings = fang
   #start_urls = ['http://fang.5i5j.com/']
   start_urls = ['https://fang.5i5j.com/bj/loupan/']
 
