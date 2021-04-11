@@ -54,6 +54,19 @@ fang={
     'tutorial.pipelines.FangPipeline.FangPipeline': 300
   }
 }
+sfw={
+  'ITEM_PIPELINES':{
+    'tutorial.pipelines.FangPipeline.SfwPipeline': 300,
+    'scrapy_redis.pipelines.RedisPipeline': 400,
+  },
+  'DUPEFILTER_CLASS': rc.DUPEFILTER_CLASS,
+  'SCHEDULER': rc.SCHEDULER,
+  'SCHEDULER_PERSIST': rc.SCHEDULER_PERSIST,
+  'SCHEDULER_QUEUE_CLASS': rc.SCHEDULER_QUEUE_CLASS,
+  'REDIS_HOST': rc.REDIS_HOST,
+  'REDIS_PORT': rc.REDIS_PORT,
+  'REDIS_PARAMS': rc.REDIS_PARAMS,
+}
 hr={
   'ITEM_PIPELINES':{
     'tutorial.pipelines.HrPipeline.HrPipeline': 300
@@ -63,6 +76,12 @@ jd={
   'ITEM_PIPELINES':{
     'tutorial.pipelines.JDPipeline.JDPipeline': 300
   }
+}
+img={
+  'ITEM_PIPELINES':{
+    'tutorial.pipelines.ImagePipeline.ImagePipeline': 300
+  },
+  'IMAGES_STORE': 'images'
 }
 kdl={
   'ITEM_PIPELINES': {

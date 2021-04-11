@@ -98,4 +98,3 @@ KEYWORDS = ['iPad']
 MAX_PAGE = 2
 SELENIUM_TIMEOUT = 20
 PHANTOMJS_SERVICE_ARGS = ['--load-images=false', '--disk-cache=true']
-IMAGES_STORE = 'images'

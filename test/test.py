@@ -29,5 +29,7 @@ def test2():
   res = db['jd_product'].find_one()
   print(res)
 
-# test1()
-test2()
+#主程序入口
+if __name__ == '__main__':
+  # test1()
+  test2()
