@@ -1,26 +1,25 @@
 # README
 
-## 创建项目
+## 常用命令备注
 
 ```sh
 # 这将在该project_dir目录下创建一个Scrapy项目。
 # 如果project_dir没有指定，project_dir将会和myproject名称一样。
 scrapy startproject myproject [ project_dir ]
-```
-
-## 控制项目
-
-```sh
 cd project_dir
 # 创建一个新的爬虫
 scrapy genspider mydomain mydomain.com
+# 列出所有spider
+scrapy list
+# 运行spider
+scrapy crawl fang
 ```
 
-## Scrapy shell
+## Scrapy shell 调试代码
 
 学习如何使用Scrapy提取数据的最好方法是尝试使用shell Scrapy shell的选择器。
 
-```sh
+```py
 scrapy shell 'http://quotes.toscrape.com/page/1/'
 
 # CSS选择元素
