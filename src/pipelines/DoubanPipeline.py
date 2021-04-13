@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pymysql,logging
-from tutorial import settings
+from .. import settings
 from ..items.DoubanItem import DoubanItem,MusicItem,MusicReviewItem,VideoItem,VideoReviewItem
 logger = logging.getLogger(__name__)
 

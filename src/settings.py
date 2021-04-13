@@ -4,16 +4,16 @@ from .configs.mysql import *
 # from datetime import datetime
 # to_day = datetime.now()
 
-BOT_NAME = 'tutorial'
+BOT_NAME = 'src'
 
-SPIDER_MODULES = ['tutorial.spiders']
-NEWSPIDER_MODULE = 'tutorial.spiders'
+SPIDER_MODULES = ['src.spiders']
+NEWSPIDER_MODULE = 'src.spiders'
 
 # 日志设置
 LOG_ENABLED = True
 LOG_ENCODING = 'utf-8'
 LOG_LEVEL = "DEBUG" # DEBUG | INFO | WARNING | ERROR | CRITICAL
-# LOG_FILE = "out/tutorial_{}_{}_{}.log".format(to_day.year,to_day.month,to_day.day)
+# LOG_FILE = "out/scrapy_{}_{}_{}.log".format(to_day.year,to_day.month,to_day.day)
 # LOG_STDOUT = False
 
 # 定义请求头
@@ -47,16 +47,16 @@ RANDOMIZE_DOWNLOAD_DELAY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'tutorial.middlewares.TutorialSpiderMiddleware': 543,
+#    'src.middlewares.SrcSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-  'tutorial.middlewares.CustomUserAgent.RandomUserAgent': 100,
-  # 'tutorial.middlewares.CustomProxy.RandomProxy': 101,
-  # 'tutorial.middlewares.SeleniumJd.SeleniumJd': 543,
-  # 'tutorial.middlewares.SeleniumTaobao.SeleniumTaobao': 543,
+  'src.middlewares.CustomUserAgent.RandomUserAgent': 100,
+  # 'src.middlewares.CustomProxy.RandomProxy': 101,
+  # 'src.middlewares.SeleniumJd.SeleniumJd': 543,
+  # 'src.middlewares.SeleniumTaobao.SeleniumTaobao': 543,
 }
 
 # Enable or disable extensions
@@ -68,7 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # ITEM_PIPELINES = {
-#   'tutorial.pipelines.AuthorPipeline': 300,
+#   'src.pipelines.AuthorPipeline': 300,
 # }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

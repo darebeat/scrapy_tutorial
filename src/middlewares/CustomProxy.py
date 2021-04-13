@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from tutorial.middlewares.Resource import PROXIES
+from ..middlewares.Resource import PROXIES
 import random
 
 class RandomProxy(object):

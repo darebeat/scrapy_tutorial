@@ -2,7 +2,7 @@ from .. import mysql as mc
 from .. import redis as rc
 
 author={
-  'ITEM_PIPELINES': { 'tutorial.pipelines.AuthorPipeline.AuthorPipeline': 300 },
+  'ITEM_PIPELINES': { 'src.pipelines.AuthorPipeline.AuthorPipeline': 300 },
   'MYSQL_HOST': mc.MYSQL_HOST,
   'MYSQL_PORT': mc.MYSQL_PORT,
   'MYSQL_DBNAME': mc.MYSQL_DBNAME,
@@ -10,14 +10,14 @@ author={
   'MYSQL_PASSWD': mc.MYSQL_PASSWD,
 }
 course={
-  'ITEM_PIPELINES':{ 'tutorial.pipelines.CoursePipeline.CoursePipeline': 300 } 
+  'ITEM_PIPELINES':{ 'src.pipelines.CoursePipeline.CoursePipeline': 300 } 
 }
 music={
-  'ITEM_PIPELINES':{ 'tutorial.pipelines.DoubanPipeline.DoubanPipeline': 300 }
+  'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 }
 }
 mbook={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.DbookPipeline.DbookMasterPipeline': 300,
+    'src.pipelines.DbookPipeline.DbookMasterPipeline': 300,
     'scrapy_redis.pipelines.RedisPipeline': 400,
   },
   'DUPEFILTER_CLASS': rc.DUPEFILTER_CLASS,
@@ -30,7 +30,7 @@ mbook={
 }
 sbook={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.DbookPipeline.DbookSlavePipeline': 300,
+    'src.pipelines.DbookPipeline.DbookSlavePipeline': 300,
     'scrapy_redis.pipelines.RedisPipeline': 400,
   },
   'DUPEFILTER_CLASS': rc.DUPEFILTER_CLASS,
@@ -42,16 +42,16 @@ sbook={
   'REDIS_PARAMS': rc.REDIS_PARAMS,
 }
 douban={
-  'ITEM_PIPELINES':{ 'tutorial.pipelines.DoubanPipeline.DoubanPipeline': 300 }
+  'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 }
 }
 video={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.DoubanPipeline.DoubanPipeline': 300
+    'src.pipelines.DoubanPipeline.DoubanPipeline': 300
   }
 }
 fang={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.FangPipeline.FangPipeline': 300
+    'src.pipelines.FangPipeline.FangPipeline': 300
   },
   'CSV_DELIMITER': ',',
   'FEED_EXPORT_ENCODING': 'utf-8',
@@ -65,7 +65,7 @@ fang={
 }
 sfw={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.FangPipeline.SfwPipeline': 300,
+    'src.pipelines.FangPipeline.SfwPipeline': 300,
     'scrapy_redis.pipelines.RedisPipeline': 400,
   },
   'DUPEFILTER_CLASS': rc.DUPEFILTER_CLASS,
@@ -78,17 +78,17 @@ sfw={
 }
 hr={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.HrPipeline.HrPipeline': 300
+    'src.pipelines.HrPipeline.HrPipeline': 300
   }
 }
 jd={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.JDPipeline.JDPipeline': 300
+    'src.pipelines.JDPipeline.JDPipeline': 300
   }
 }
 img={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.ImagePipeline.ImagePipeline': 300
+    'src.pipelines.ImagePipeline.ImagePipeline': 300
   },
   'IMAGES_STORE':'images',
   # 30天后过期
@@ -101,28 +101,28 @@ img={
 }
 kdl={
   'ITEM_PIPELINES': {
-    'tutorial.pipelines.KuaidailiPipeline.KuaidailiRedisPipeline': 300,
-    'tutorial.pipelines.KuaidailiPipeline.KuaidailiPipeline': 301,
+    'src.pipelines.KuaidailiPipeline.KuaidailiRedisPipeline': 300,
+    'src.pipelines.KuaidailiPipeline.KuaidailiPipeline': 301,
     'scrapy_redis.pipelines.RedisPipeline': 400,
   }
 }
 mz={
   'ITEM_PIPELINES': {
-    'tutorial.pipelines.MeizhuoPipeline.MeizhuoPipeline': 300
+    'src.pipelines.MeizhuoPipeline.MeizhuoPipeline': 300
   }
 }
 qd={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.QdPipeline.QdPipeline': 300
+    'src.pipelines.QdPipeline.QdPipeline': 300
   }
 }
 taobao={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.TaobaoPipeline.TaobaoPipeline': 300
+    'src.pipelines.TaobaoPipeline.TaobaoPipeline': 300
   }
 }
 wx={
   'ITEM_PIPELINES':{
-    'tutorial.pipelines.WxPipeline.WxPipeline': 300
+    'src.pipelines.WxPipeline.WxPipeline': 300
   }
 }

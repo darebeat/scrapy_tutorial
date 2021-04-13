@@ -47,3 +47,26 @@ pip3 install pytesseract
 pip3 install pillow
 pip install PIL
 ```
+
+## 目录结构说明
+
+```
+.
+├── README.md
+├── docker  # docker环境部署
+├── main.py # 启动类
+├── out     # 文件输出目录
+├── requirements.txt # 依赖包
+├── scrapy.cfg # 项目结构配置
+├── sqls    # sql初始化文件
+├── test    # 测试用例
+└── src # 源代码地址
+    ├── __init__.py
+    ├── configs # 自定义配置文件
+    ├── items   # 自定义数据类
+    ├── middlewares # 自定义中间件
+    ├── pipelines # 自定义管道处理
+    ├── spiders # 自定义爬虫类
+    ├── utils # 工具类
+    └── settings.py # 项目通用配置
+```
