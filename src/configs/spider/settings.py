@@ -1,6 +1,7 @@
 from .. import mysql as mc
 from .. import redis as rc
 
+IMAGES_STORE='out/images'
 author={
   'ITEM_PIPELINES': { 'src.pipelines.AuthorPipeline.AuthorPipeline': 300 },
   # mysql config
@@ -67,7 +68,7 @@ fang={
 }
 img={
   'ITEM_PIPELINES':{ 'src.pipelines.ImagePipeline.ImagePipeline': 300 },
-  'IMAGES_STORE':'images',
+  'IMAGES_STORE':'out/images',
   # 30天后过期
   'IMAGES_EXPIRES':30,
   # Images Pipline可以自动创建下载图像的缩略图，在setting中增加IMAGES_THUMBS参数,参数为一个字典，其中的键是缩略图名称，而值是它们的维数：
@@ -90,10 +91,24 @@ jd={ 'ITEM_PIPELINES':{
   'MAX_PAGE':2,
 }
 taobao={ 
-  'ITEM_PIPELINES':{ 'src.pipelines.TaobaoPipeline.TaobaoPipeline': 300},
+  'ITEM_PIPELINES':{ 'src.pipelines.TaobaoPipeline.TaobaoPipeline': 300 },
   'KEYWORDS':['iPad'],
   'MAX_PAGE':2,
 }
+douyu={
+  'ITEM_PIPELINES':{ 'src.pipelines.DouyuPipeline.DouyuPipeline': 300 },
+  'IMAGES_STORE':'out/images',
+  # 30天后过期
+  'IMAGES_EXPIRES':30,
+  # Images Pipline可以自动创建下载图像的缩略图，在setting中增加IMAGES_THUMBS参数,参数为一个字典，其中的键是缩略图名称，而值是它们的维数：
+  'IMAGES_THUMBS':{ 'small': (50, 50), 'big': (270, 270)},
+  # 如果想过滤掉小图片，通过设置IMAGES_MIN_HEIGHT和 IMAGES_MIN_WIDTH来指定图像大小：
+  'IMAGES_MIN_HEIGHT':110,
+  'IMAGES_MIN_WIDTH':110,
+}
+coser={ 'ITEM_PIPELINES':{ 'src.pipelines.CoserPipeline.CoserPipeline': 300 }, }
+sina={ 'ITEM_PIPELINES':{ 'src.pipelines.SinaPipeline.SinaPipeline': 300 }, }
+sun={ 'ITEM_PIPELINES':{ 'src.pipelines.SunPipeline.SunPipeline': 300 }, }
 hr={ 'ITEM_PIPELINES':{ 'src.pipelines.HrPipeline.HrPipeline': 300 } }
 douban={ 'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 } }
 video={ 'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 } }
