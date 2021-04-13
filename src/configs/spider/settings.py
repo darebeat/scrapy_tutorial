@@ -3,23 +3,19 @@ from .. import redis as rc
 
 author={
   'ITEM_PIPELINES': { 'src.pipelines.AuthorPipeline.AuthorPipeline': 300 },
+  # mysql config
   'MYSQL_HOST': mc.MYSQL_HOST,
   'MYSQL_PORT': mc.MYSQL_PORT,
   'MYSQL_DBNAME': mc.MYSQL_DBNAME,
   'MYSQL_USER': mc.MYSQL_USER,
   'MYSQL_PASSWD': mc.MYSQL_PASSWD,
 }
-course={
-  'ITEM_PIPELINES':{ 'src.pipelines.CoursePipeline.CoursePipeline': 300 } 
-}
-music={
-  'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 }
-}
 mbook={
   'ITEM_PIPELINES':{
     'src.pipelines.DbookPipeline.DbookMasterPipeline': 300,
     'scrapy_redis.pipelines.RedisPipeline': 400,
   },
+  # scrapy_redis config
   'DUPEFILTER_CLASS': rc.DUPEFILTER_CLASS,
   'SCHEDULER': rc.SCHEDULER,
   'SCHEDULER_PERSIST': rc.SCHEDULER_PERSIST,
@@ -33,6 +29,7 @@ sbook={
     'src.pipelines.DbookPipeline.DbookSlavePipeline': 300,
     'scrapy_redis.pipelines.RedisPipeline': 400,
   },
+  # scrapy_redis config
   'DUPEFILTER_CLASS': rc.DUPEFILTER_CLASS,
   'SCHEDULER': rc.SCHEDULER,
   'SCHEDULER_PERSIST': rc.SCHEDULER_PERSIST,
@@ -41,18 +38,23 @@ sbook={
   'REDIS_PORT': rc.REDIS_PORT,
   'REDIS_PARAMS': rc.REDIS_PARAMS,
 }
-douban={
-  'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 }
-}
-video={
+sfw={
   'ITEM_PIPELINES':{
-    'src.pipelines.DoubanPipeline.DoubanPipeline': 300
-  }
+    'src.pipelines.FangPipeline.SfwPipeline': 300,
+    'scrapy_redis.pipelines.RedisPipeline': 400,
+  },
+  # scrapy_redis config
+  'DUPEFILTER_CLASS': rc.DUPEFILTER_CLASS,
+  'SCHEDULER': rc.SCHEDULER,
+  'SCHEDULER_PERSIST': rc.SCHEDULER_PERSIST,
+  'SCHEDULER_QUEUE_CLASS': rc.SCHEDULER_QUEUE_CLASS,
+  'REDIS_HOST': rc.REDIS_HOST,
+  'REDIS_PORT': rc.REDIS_PORT,
+  'REDIS_PARAMS': rc.REDIS_PARAMS,
 }
 fang={
-  'ITEM_PIPELINES':{
-    'src.pipelines.FangPipeline.FangPipeline': 300
-  },
+  'ITEM_PIPELINES':{ 'src.pipelines.FangPipeline.FangPipeline': 300 },
+  # csv export config
   'CSV_DELIMITER': ',',
   'FEED_EXPORT_ENCODING': 'utf-8',
   'FIELDS_TO_EXPORT':[
@@ -63,33 +65,8 @@ fang={
     'price'
   ]
 }
-sfw={
-  'ITEM_PIPELINES':{
-    'src.pipelines.FangPipeline.SfwPipeline': 300,
-    'scrapy_redis.pipelines.RedisPipeline': 400,
-  },
-  'DUPEFILTER_CLASS': rc.DUPEFILTER_CLASS,
-  'SCHEDULER': rc.SCHEDULER,
-  'SCHEDULER_PERSIST': rc.SCHEDULER_PERSIST,
-  'SCHEDULER_QUEUE_CLASS': rc.SCHEDULER_QUEUE_CLASS,
-  'REDIS_HOST': rc.REDIS_HOST,
-  'REDIS_PORT': rc.REDIS_PORT,
-  'REDIS_PARAMS': rc.REDIS_PARAMS,
-}
-hr={
-  'ITEM_PIPELINES':{
-    'src.pipelines.HrPipeline.HrPipeline': 300
-  }
-}
-jd={
-  'ITEM_PIPELINES':{
-    'src.pipelines.JDPipeline.JDPipeline': 300
-  }
-}
 img={
-  'ITEM_PIPELINES':{
-    'src.pipelines.ImagePipeline.ImagePipeline': 300
-  },
+  'ITEM_PIPELINES':{ 'src.pipelines.ImagePipeline.ImagePipeline': 300 },
   'IMAGES_STORE':'images',
   # 30天后过期
   'IMAGES_EXPIRES':30,
@@ -106,23 +83,13 @@ kdl={
     'scrapy_redis.pipelines.RedisPipeline': 400,
   }
 }
-mz={
-  'ITEM_PIPELINES': {
-    'src.pipelines.MeizhuoPipeline.MeizhuoPipeline': 300
-  }
-}
-qd={
-  'ITEM_PIPELINES':{
-    'src.pipelines.QdPipeline.QdPipeline': 300
-  }
-}
-taobao={
-  'ITEM_PIPELINES':{
-    'src.pipelines.TaobaoPipeline.TaobaoPipeline': 300
-  }
-}
-wx={
-  'ITEM_PIPELINES':{
-    'src.pipelines.WxPipeline.WxPipeline': 300
-  }
-}
+hr={ 'ITEM_PIPELINES':{ 'src.pipelines.HrPipeline.HrPipeline': 300 } }
+jd={ 'ITEM_PIPELINES':{ 'src.pipelines.JDPipeline.JDPipeline': 300 } }
+douban={ 'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 } }
+video={ 'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 } }
+course={ 'ITEM_PIPELINES':{ 'src.pipelines.CoursePipeline.CoursePipeline': 300 } }
+music={ 'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 } }
+mz={ 'ITEM_PIPELINES': { 'src.pipelines.MeizhuoPipeline.MeizhuoPipeline': 300 } }
+qd={ 'ITEM_PIPELINES':{ 'src.pipelines.QdPipeline.QdPipeline': 300 } }
+taobao={ 'ITEM_PIPELINES':{ 'src.pipelines.TaobaoPipeline.TaobaoPipeline': 300 } }
+wx={ 'ITEM_PIPELINES':{ 'src.pipelines.WxPipeline.WxPipeline': 300 } }
