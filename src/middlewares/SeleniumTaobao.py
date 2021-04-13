@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from scrapy.http import HtmlResponse
 from logging import getLogger
+from ..configs import selenium as tb
 
 class SeleniumTaobao():
   def __init__(self, timeout=None, service_args=[]):
@@ -49,5 +50,7 @@ class SeleniumTaobao():
 
   @classmethod
   def from_crawler(cls, crawler):
-    return cls(timeout=crawler.settings.get('SELENIUM_TIMEOUT'),
-           service_args=crawler.settings.get('PHANTOMJS_SERVICE_ARGS'))
+    return cls(
+      timeout=tb.SELENIUM_TIMEOUT',
+      service_args=tb.PHANTOMJS_SERVICE_ARGS
+    )

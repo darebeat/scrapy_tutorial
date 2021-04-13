@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from scrapy_redis.spiders import RedisSpider
 from ..items.KuaidailiItem import KuaidailiItem
 from ..configs.spider.settings import kdl

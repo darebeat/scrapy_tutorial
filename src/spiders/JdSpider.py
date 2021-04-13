@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from scrapy import Request,Spider
 from urllib.parse import quote
 from bs4 import BeautifulSoup

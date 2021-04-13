@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import redis,re,pymysql,logging
 from ..items.DoubanItem import BookItem
 from ..configs import redis as rconf

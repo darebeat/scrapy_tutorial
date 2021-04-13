@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import scrapy
 from ..items.ImageItem import ImageItem
 from ..configs.spider.settings import img

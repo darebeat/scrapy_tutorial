@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import scrapy,re,logging
 from ..items.DoubanItem import DoubanItem
 from ..configs.spider.settings import douban

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import scrapy
 from ..items.WxItem import WxItem
 from ..configs.spider.settings import wx

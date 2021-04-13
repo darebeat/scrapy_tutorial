@@ -1,4 +1,4 @@
-# coding:utf-8
+# -*- coding: utf-8 -*-
 
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule

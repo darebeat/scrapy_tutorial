@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import scrapy,logging
 from ..items.CourseItem import CourseItem
 from ..configs.spider.settings import course

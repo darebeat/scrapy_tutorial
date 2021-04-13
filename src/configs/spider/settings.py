@@ -83,13 +83,22 @@ kdl={
     'scrapy_redis.pipelines.RedisPipeline': 400,
   }
 }
+
+jd={ 'ITEM_PIPELINES':{ 
+  'src.pipelines.JDPipeline.JDPipeline': 300 },
+  'KEYWORDS':['iPad'],
+  'MAX_PAGE':2,
+}
+taobao={ 
+  'ITEM_PIPELINES':{ 'src.pipelines.TaobaoPipeline.TaobaoPipeline': 300},
+  'KEYWORDS':['iPad'],
+  'MAX_PAGE':2,
+}
 hr={ 'ITEM_PIPELINES':{ 'src.pipelines.HrPipeline.HrPipeline': 300 } }
-jd={ 'ITEM_PIPELINES':{ 'src.pipelines.JDPipeline.JDPipeline': 300 } }
 douban={ 'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 } }
 video={ 'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 } }
 course={ 'ITEM_PIPELINES':{ 'src.pipelines.CoursePipeline.CoursePipeline': 300 } }
 music={ 'ITEM_PIPELINES':{ 'src.pipelines.DoubanPipeline.DoubanPipeline': 300 } }
 mz={ 'ITEM_PIPELINES': { 'src.pipelines.MeizhuoPipeline.MeizhuoPipeline': 300 } }
 qd={ 'ITEM_PIPELINES':{ 'src.pipelines.QdPipeline.QdPipeline': 300 } }
-taobao={ 'ITEM_PIPELINES':{ 'src.pipelines.TaobaoPipeline.TaobaoPipeline': 300 } }
 wx={ 'ITEM_PIPELINES':{ 'src.pipelines.WxPipeline.WxPipeline': 300 } }

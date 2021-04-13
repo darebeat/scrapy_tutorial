@@ -1,4 +1,4 @@
-# coding:utf-8
+# -*- coding: utf-8 -*-
 
 from scrapy.spiders import CrawlSpider, Request, Rule
 from ..items.ImdbItem import ImdbItem

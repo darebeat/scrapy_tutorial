@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import scrapy,logging
 from ..items.FangItem import FangItem
 from ..configs.spider.settings import fang

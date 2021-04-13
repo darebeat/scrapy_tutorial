@@ -1,5 +1,6 @@
-#使用requests加pyquery爬取所有豆瓣图书标签信息，并将信息储存于redis中
+# -*- coding: utf-8 -*-
 
+#使用requests加pyquery爬取所有豆瓣图书标签信息，并将信息储存于redis中
 import requests,random,redis
 from pyquery import PyQuery as pq
 

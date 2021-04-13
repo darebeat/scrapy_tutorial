@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 
+
 import scrapy,re
 from ..items.DoubanItem import BookItem
 from ..configs.spider.settings import sbook

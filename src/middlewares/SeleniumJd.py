@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from scrapy.http import HtmlResponse
 from logging import getLogger
+from ..configs import selenium as jd
 
 class SeleniumJd(object):
   # Not all methods need to be defined. If a method is not defined,
@@ -27,7 +28,7 @@ class SeleniumJd(object):
   @classmethod
   def from_crawler(cls, crawler):
     # This method is used by Scrapy to create your spiders.
-    return cls(timeout=crawler.settings.get('SELENIUM_TIMEOUT'))
+    return cls(timeout=jd.SELENIUM_TIMEOUT)
 
   def process_request(self, request, spider):
     '''

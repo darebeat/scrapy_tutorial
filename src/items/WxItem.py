@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import scrapy
 
 # 定义信息封装类（标题、摘要、公众号、时间、URL地址）

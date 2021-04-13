@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import scrapy,logging
 from ..items.AuthorItem import AuthorItem
 from ..configs.spider.settings import author

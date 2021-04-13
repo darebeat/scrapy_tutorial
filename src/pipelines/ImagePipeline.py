@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from scrapy import Request
 from scrapy.exceptions import DropItem
 from scrapy.pipelines.images import ImagesPipeline

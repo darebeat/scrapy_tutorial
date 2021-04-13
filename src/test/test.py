@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os,pymongo
 
 def test1():
